@@ -2,11 +2,10 @@
 https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audiometria/
 
 //Bibliotecas utilizadas
-#include <Keypad.h>				//https://playground.arduino.cc/Code/Keypad/
 
-#include <LiquidCrystal.h>		//http://blog.baudaeletronica.com.br/conhecendo-biblioteca-liquidcrystal/
-
-#include <Adafruit_NeoPixel.h>  //https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
+#include <Keypad.h>
+#include <LiquidCrystal.h>		
+#include <Adafruit_NeoPixel.h>
 
 //Constantes de modos de funcionamento --> DIMINUIR A DIFICULDADE
 #define TESTE 2			//modo de teste, funções mais limitadas
