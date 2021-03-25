@@ -3,11 +3,11 @@ https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audi
 
 //Bibliotecas utilizadas
 
-#include <Keypad.h>
+#include Keypad.h
 
-#include <LiquidCrystal.h>		
+#include LiquidCrystal.h		
 
-#include <Adafruit_NeoPixel.h>
+#include Adafruit_NeoPixel.h
 
 
 ///Constantes de modos de funcionamento
