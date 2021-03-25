@@ -183,35 +183,20 @@ void impressao(char L1[], byte L2,int x);
 ///Inicialização do teclado 2x3
 
 /*
-*							 
-
-Legenda                     
-
-*							 
+*							 Legenda                     
+							 
 
 1= Não ouviu				 
-
-*							 
-
+							 
 10= Esquerdo				 
-
-*							 
 
 19= Ouviu os dois			 
 
-*							 
-
 C= Confirma				 
-
-*							 
-
-R= Retorna					 
-
-*							 
+							 
+R= Retorna					 							 
 
 9= Direita					 
-
-*							 
 */
 
 char map_tecl[QTDE_L][QTDE_C]={
