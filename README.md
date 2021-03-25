@@ -100,14 +100,23 @@ void impressao(char L1[], char L2[]);
 void impressao(char L1[], byte L2,int x);
 
 //Inicialização do teclado 2x3
+
 /*****************************
-*Legenda                     *
-*1= Não ouviu				 *
-*10= Esquerdo				 *
-*19= Ouviu os dois			 *
-*C= Confirma				 *
-*R= Retorna					 *
-*9= Direita					 *
+*							 
+Legenda                     
+*							 
+1= Não ouviu				 
+*							 
+10= Esquerdo				 
+*							 
+19= Ouviu os dois			 
+*							 
+C= Confirma				 
+*							 
+R= Retorna					 
+*							 
+9= Direita					 
+*							 
 *****************************/
 char map_tecl[QTDE_L][QTDE_C]={
 {1,10,19},
@@ -125,9 +134,10 @@ LiquidCrystal lcd(5,4,3,2,1,0);
 //Função para produzir som em apenas um piezo// FUNÇÃO 1 --> 
 void emissao_som(int PIN_VOL, int PIN_FREQ, int* VOL, int FREQ)
 {
+
 	//Variaveis para guardar as respostas do paciente
 	char Resp_pac;
-
+	
 	//Variavel para loop
 	int i;
 
@@ -159,11 +169,13 @@ void emissao_som(int PIN_VOL, int PIN_FREQ, int* VOL, int FREQ)
 		*VOL=*VOL-1;
 	else
 		*VOL=*VOL+1;
+		
 }
 
 //Função para produzir som nos dois piezos
 void emissao_som(int* VOL_E, int* VOL_D, int FREQ)
 {
+
 	//Variaveis para guardar as respostas do paciente
 	char Resp_pac;
 
@@ -221,11 +233,13 @@ void emissao_som(int* VOL_E, int* VOL_D, int FREQ)
 		*VOL_E=*VOL_E+1;
 		*VOL_D=*VOL_D+1;
 	}
+	
 }
 
 //Função para receber a resposta do usuario sobre o som produzido
 int aquisicao_resp(void)
 {
+
 	//Variaveis para guardar as respostas do paciente
 	char Resp_pac, Confir;
   
@@ -277,10 +291,12 @@ int aquisicao_resp(void)
 		}while(Confir!='C'&&Confir!='R');
 	}while(Confir=='R');
 	return Resp_pac;
+	
 }
 
 int pow_int(int base, int exp)
 {
+
 	//Variavel para fazer o calculo
 	int Resul=1;
 
@@ -291,30 +307,36 @@ int pow_int(int base, int exp)
 	for(i=0;i<exp;i++)
 		Resul*=base;
 	return Resul;
+	
 }
 
 //Função para simplificar a impressão de textos nas duas linhas do LCD
 void impressao(char L1[], char L2[])
 {
+
 	lcd.clear();
 	lcd.setCursor(0,0);
 	lcd.write(L1);
 	lcd.setCursor(0,1);
 	lcd.write(L2);
 	delay(2500);
+	
 }
 
 //Função para simplificar a impressão de palabras e sinais em qualquer linha
 void impressao(char L1[], byte L2,int x)
 {
+
 	lcd.setCursor(0,x);
 	lcd.write(L1);
 	lcd.setCursor(15,x);
 	lcd.write(L2);
+	
 }
 
 void setup()
 {	
+
 	//Ativamento das fitas de led e do lcd
 	OUV_DIR.begin();
 	OUV_ESQ.begin();
@@ -335,6 +357,7 @@ void setup()
 
 void loop()
 {	
+
 	//Mensagens introdutorias
 	impressao("Oi! Bem-vindo","a audiometria");
 	impressao("Atencao para","as intrucoes");
@@ -771,4 +794,5 @@ void loop()
 			j=0;
 		}
 	}while(j!=2);
+	
 }
