@@ -3,7 +3,9 @@ https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audi
 
 //Bibliotecas utilizadas
 #include <Keypad.h>				//https://playground.arduino.cc/Code/Keypad/
+
 #include <LiquidCrystal.h>		//http://blog.baudaeletronica.com.br/conhecendo-biblioteca-liquidcrystal/
+
 #include <Adafruit_NeoPixel.h>  //https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
 
 //Constantes de modos de funcionamento --> DIMINUIR A DIFICULDADE
