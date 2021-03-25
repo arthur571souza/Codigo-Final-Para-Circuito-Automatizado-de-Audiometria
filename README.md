@@ -9,132 +9,231 @@ https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audi
 
 #include <Adafruit_NeoPixel.h>
 
-//Constantes de modos de funcionamento --> DIMINUIR A DIFICULDADE
-#define TESTE 2			//modo de teste, funções mais limitadas
-#define REAL 6			//modo real, funções completas
 
-//Constantes do teclado
-#define QTDE_L 2		//quantidade de linhas
-#define QTDE_C 3		//quantidade de colunas
+///Constantes de modos de funcionamento
 
-//Constantes das fitas de led
-#define QTDE_LEDs 12	//tamanho das fitas de led
-#define BLUE 6			//pino da fita de led que representa o ouvido esquerdo
-#define RED A3			//pino da fita de led que representa o ouvido direito
+//modo de teste, funções mais limitadas
 
-//Constantes dos piezos
-#define VOL_DIR 9		//pino que controla o volume do piezo direito
-#define VOL_ESQ 10		//pino que controla o volume do piezo esquerdo
-#define FREQ_DIR 7		//pino que controla a frequencia do piezo direito
-#define FREQ_ESQ 8		//pino que controla a frequencia do piezo esquerdo
+#define TESTE 2	
 
-//Inicialização das fitas de LEDs
-///Fita de led do ouvido direito(cor vermelha)
+//modo real, funções completas
+
+#define REAL 6	
+
+
+///Constantes do teclado
+
+//quantidade de linhas
+
+#define QTDE_L 2		
+
+//quantidade de colunas
+
+#define QTDE_C 3		
+
+
+///Constantes das fitas de led
+
+//tamanho das fitas de led
+
+#define QTDE_LEDs 12	
+
+//pino da fita de led que representa o ouvido esquerdo
+
+#define BLUE 6			
+
+//pino da fita de led que representa o ouvido direito
+
+#define RED A3			
+
+
+///Constantes dos piezos
+
+//pino que controla o volume do piezo direito
+
+#define VOL_DIR 9		
+
+//pino que controla o volume do piezo esquerdo
+
+#define VOL_ESQ 10		
+
+//pino que controla a frequencia do piezo direito
+
+#define FREQ_DIR 7		
+
+//pino que controla a frequencia do piezo esquerdo
+
+#define FREQ_ESQ 8		
+
+
+///Inicialização das fitas de LEDs
+
+//Fita de led do ouvido direito(cor vermelha)
+
 Adafruit_NeoPixel OUV_DIR = Adafruit_NeoPixel(QTDE_LEDs, RED, NEO_GRB + NEO_KHZ800);
-///Fita de led do ouvido esquerda(cor azul)
+
+//Fita de led do ouvido esquerda(cor azul)
+
 Adafruit_NeoPixel OUV_ESQ = Adafruit_NeoPixel(QTDE_LEDs, BLUE, NEO_GRB + NEO_KHZ800);
 
-//Simbolos para o LCD
-byte Mao_DIR[8]={B00000,
+
+///Simbolos para o LCD
+
+byte Mao_DIR[8]={
+
+				B00000,
 				B00100,
 				B00100,
 				B10111,
 				B01111,
 				B01111,
-				B00000};
+				B00000
+				
+};
 
-byte Mao_ESQ[8]={B00000,
+byte Mao_ESQ[8]={
+
+				B00000,
 				B00100,
 				B00100,
 				B11101,
 				B11110,
 				B11110,
-				B00000};
+				B00000
+				
+};
 
-byte Ambos[8]={B01000,
+byte Ambos[8]={	
+				
+				B01000,
 				B11111,
 				B01000,
 				B00000,
 				B00010,
 				B11111,
-				B00010};
+				B00010
+				
+};
 
-byte Nenhum[8]={B00000,
+byte Nenhum[8]={
+
+				B00000,
 				B10001,
 				B01010,
 				B00100,
 				B01010,
 				B10001,
-				B00000};
+				B00000
+				
+};
 
-byte Confirmar[8]={B00000,
+byte Confirmar[8]={
+				
+				B00000,
 				B01000,
 				B01000,
 				B11111,
 				B11111,
 				B11111,
-				B00000};
+				B00000
+};
 
-byte Corrige[8]={B00000,
+byte Corrige[8]={
+				
+				B00000,
 				B11111,
 				B11111,
 				B11111,
 				B01000,
 				B01000,
-				B00000};
+				B00000
+};
 
-byte cim_bai[8]={B00100,
+byte cim_bai[8]={
+
+				B00100,
 				B01010,
 				B10001,
 				B00000,
 				B10001,
 				B01010,
-				B00100};
+				B00100
+};
 
-//Variavel para definir a configuração do teste(TESTE para modo teste e REAL para modo real)
+///Variavel para definir a configuração do teste(TESTE para modo teste e REAL para modo real)
+
 int CONFIG_ATUAL=TESTE;
 
-//Protótipos das funções
+
+///Protótipos das funções
+
 void emissao_som(int PIN_VOL, int PIN_FREQ, int* VOL, int FREQ);
+
 void emissao_som(int* VOL_1, int* VOL_2, int FREQ);
+
 int aquisicao_resp(void);
+
 int pow_int(int base, int exp);
+
 void impressao(char L1[], char L2[]);
+
 void impressao(char L1[], byte L2,int x);
 
-//Inicialização do teclado 2x3
 
-/*****************************
+///Inicialização do teclado 2x3
+
+/*
 *							 
+
 Legenda                     
+
 *							 
+
 1= Não ouviu				 
+
 *							 
+
 10= Esquerdo				 
+
 *							 
+
 19= Ouviu os dois			 
+
 *							 
+
 C= Confirma				 
+
 *							 
+
 R= Retorna					 
+
 *							 
+
 9= Direita					 
+
 *							 
-*****************************/
+*/
+
 char map_tecl[QTDE_L][QTDE_C]={
+
 {1,10,19},
+
 {'C','R',9}
+
 };
 
 byte pin_L[QTDE_L]={12, 11};
+
 byte pin_C[QTDE_C]={A0, A1, A2};
 
 Keypad teclado=Keypad(makeKeymap(map_tecl), pin_L, pin_C, QTDE_L, QTDE_C);
 
-//Inicialização do lcd 16x2
+///Inicialização do lcd 16x2
+
 LiquidCrystal lcd(5,4,3,2,1,0);
 
-//Função para produzir som em apenas um piezo// FUNÇÃO 1 --> 
+
+///Função para produzir som em apenas um piezo
 void emissao_som(int PIN_VOL, int PIN_FREQ, int* VOL, int FREQ)
 {
 
@@ -175,7 +274,8 @@ void emissao_som(int PIN_VOL, int PIN_FREQ, int* VOL, int FREQ)
 		
 }
 
-//Função para produzir som nos dois piezos
+
+///Função para produzir som nos dois piezos
 void emissao_som(int* VOL_E, int* VOL_D, int FREQ)
 {
 
@@ -239,7 +339,8 @@ void emissao_som(int* VOL_E, int* VOL_D, int FREQ)
 	
 }
 
-//Função para receber a resposta do usuario sobre o som produzido
+
+///Função para receber a resposta do usuario sobre o som produzido
 int aquisicao_resp(void)
 {
 
@@ -297,6 +398,8 @@ int aquisicao_resp(void)
 	
 }
 
+
+///função para calculo de potência
 int pow_int(int base, int exp)
 {
 
@@ -313,7 +416,8 @@ int pow_int(int base, int exp)
 	
 }
 
-//Função para simplificar a impressão de textos nas duas linhas do LCD
+
+///Função para simplificar a impressão de textos nas duas linhas do LCD
 void impressao(char L1[], char L2[])
 {
 
@@ -326,7 +430,8 @@ void impressao(char L1[], char L2[])
 	
 }
 
-//Função para simplificar a impressão de palabras e sinais em qualquer linha
+
+///Função para simplificar a impressão de palabras e sinais em qualquer linha
 void impressao(char L1[], byte L2,int x)
 {
 
@@ -336,6 +441,7 @@ void impressao(char L1[], byte L2,int x)
 	lcd.write(L2);
 	
 }
+
 
 void setup()
 {	
@@ -357,6 +463,7 @@ void setup()
 	lcd.createChar(5,Corrige);
 	lcd.createChar(6,cim_bai);
 }
+
 
 void loop()
 {	
