@@ -1,15 +1,16 @@
 # Codigo-Final-Para-Circuito-Automatizado-de-Audiometria
 https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audiometria/
 
+///adicionar "<" e ">" as bibliotecas pois o GitHub retira o que tiver entre esses caracteres
 
 //Bibliotecas utilizadas
 
 
-#include <Keypad.h>
+#include Keypad.h
 
-#include <LiquidCrystal.h>		
+#include LiquidCrystal.h		
 
-#include <Adafruit_NeoPixel.h>
+#include Adafruit_NeoPixel.h
 
 
 ///Constantes de modos de funcionamento
