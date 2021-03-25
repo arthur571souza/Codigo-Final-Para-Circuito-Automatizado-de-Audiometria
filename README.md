@@ -2,12 +2,12 @@
 https://arthur571souza.github.io/Codigo-Final-Para-Circuito-Automatizado-de-Audiometria/
 
 //Bibliotecas utilizadas
-<2131>
-#include <Keypad.h>//
 
-#include <LiquidCrystal.h>//		
+#include Keypad
 
-#include <Adafruit_NeoPixel.h>//
+#include LiquidCrystal		
+
+#include Adafruit_NeoPixel
 
 
 ///Constantes de modos de funcionamento
